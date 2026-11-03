@@ -1,0 +1,49 @@
+App\Entity\Location:
+    properties:
+        latitude:
+            - NotBlank:
+                    groups: [create]
+            - Range:
+                        min: -90
+                        max: 90
+                        groups: [create, edit]
+        longitude:
+            - NotBlank:
+                    groups: [create]
+            -   Range:
+                    min: -180
+                    max: 180
+                    groups: [create, edit]
+
+App\Entity\Forcast:
+    properties:
+        date:
+            - NotBlank:
+                  groups: [create]
+            - GreaterThanOrEqual:
+                  value: today
+                  groups: [create, edit]
+
+        temperature:
+            - NotBlank:
+                    groups: [create]
+            - Range:
+                  min: -100
+                  max: 100
+                  groups: [create, edit]
+        humidity:
+            - NotBlank:
+                  groups: [create]
+            - Range:
+                   min: 0
+                   max: 100
+                   groups: [create, edit]
+        perceived_temperature:
+            - Range:
+                   min: -100
+                   max: 100
+                   groups: [create, edit]
+        wind:
+            -   Range:
+                    min: 0
+                    groups: [ create, edit ]
