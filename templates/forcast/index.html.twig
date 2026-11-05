@@ -14,7 +14,9 @@
                 <th>Humidity</th>
                 <th>Perceived_temperature</th>
                 <th>Wind</th>
-                <th>actions</th>
+                {% if is_granted('ROLE_LOCATION_EDIT') or is_granted('ROLE_LOCATION_SHOW')  %}
+                    <th>actions</th>
+                {% endif %}
             </tr>
         </thead>
         <tbody>
@@ -26,10 +28,16 @@
                 <td>{{ forcast.humidity }}</td>
                 <td>{{ forcast.perceivedTemperature }}</td>
                 <td>{{ forcast.wind }}</td>
+                {% if is_granted('ROLE_LOCATION_SHOW') or is_granted('ROLE_LOCATION_EDIT')  %}
                 <td>
-                    <a href="{{ path('app_forcast_show', {'id': forcast.id}) }}">show</a>
-                    <a href="{{ path('app_forcast_edit', {'id': forcast.id}) }}">edit</a>
+                    {% if is_granted('ROLE_FORCAST_SHOW')  %}
+                        <a href="{{ path('app_forcast_show', {'id': forcast.id}) }}">show</a>
+                    {% endif %}
+                    {% if is_granted('ROLE_FORCAST_EDIT')  %}
+                        a href="{{ path('app_forcast_edit', {'id': forcast.id}) }}">edit</a>
+                    {% endif %}
                 </td>
+                {% endif %}
             </tr>
         {% else %}
             <tr>
@@ -39,5 +47,7 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_forcast_new') }}">Create new</a>
+    {% if is_granted('ROLE_FORCAST_NEW')   %}
+        <a href="{{ path('app_forcast_new') }}">Create new</a>
+    {% endif %}
 {% endblock %}

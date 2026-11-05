@@ -36,6 +36,13 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('app_forcast_index') }}">Forecast</a>
                 </li>
+                <li class="nav-item">
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        <a class="nav-link" href="{{ path('app_logout') }}">Logout</a>
+                    {% else %}
+                         <a class="nav-link" href="{{ path('app_login') }}">Login</a>
+                    {% endif %}
+                </li>
             </ul>
         </div>
     </nav>
