@@ -14,7 +14,7 @@
                 <th>Humidity</th>
                 <th>Perceived_temperature</th>
                 <th>Wind</th>
-                {% if is_granted('ROLE_LOCATION_EDIT') or is_granted('ROLE_LOCATION_SHOW')  %}
+                {% if is_granted('ROLE_FORCAST_EDIT') or is_granted('ROLE_FORCAST_SHOW')  %}
                     <th>actions</th>
                 {% endif %}
             </tr>
@@ -28,13 +28,13 @@
                 <td>{{ forcast.humidity }}</td>
                 <td>{{ forcast.perceivedTemperature }}</td>
                 <td>{{ forcast.wind }}</td>
-                {% if is_granted('ROLE_LOCATION_SHOW') or is_granted('ROLE_LOCATION_EDIT')  %}
+                {% if is_granted('ROLE_FORCAST_SHOW') or is_granted('ROLE_FORCAST_EDIT')  %}
                 <td>
                     {% if is_granted('ROLE_FORCAST_SHOW')  %}
                         <a href="{{ path('app_forcast_show', {'id': forcast.id}) }}">show</a>
                     {% endif %}
                     {% if is_granted('ROLE_FORCAST_EDIT')  %}
-                        a href="{{ path('app_forcast_edit', {'id': forcast.id}) }}">edit</a>
+                        <a href="{{ path('app_forcast_edit', {'id': forcast.id}) }}">edit</a>
                     {% endif %}
                 </td>
                 {% endif %}
