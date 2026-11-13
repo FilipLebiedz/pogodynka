@@ -109,4 +109,8 @@ class Forcast
 
         return $this;
     }
+
+    public function getFahrenheit(){
+        return ($this->getTemperature() * 1.8) + 32;
+    }
 }

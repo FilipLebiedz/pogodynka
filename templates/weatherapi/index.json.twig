@@ -1,0 +1,18 @@
+{% autoescape false %}
+{
+    "city": {{ city }},
+    "country": {{ country }},
+    "forcast": [
+    {% for f in forcasts %}
+        {
+            "date": "{{ f.date|date('Y-m-d') }}",
+            "temperature °C": {{ f.temperature }},
+            "temperature °F": {{ f.Fahrenheit}},,
+            "humidity": {{ f.humidity }},
+            "perceived_temperature": {{ f.perceivedTemperature }},
+            "wind": {{ f.wind }}
+        },
+    {% endfor %}
+    ]
+}
+{% endautoescape %}

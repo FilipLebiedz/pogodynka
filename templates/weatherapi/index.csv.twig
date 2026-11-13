@@ -1,0 +1,13 @@
+{% autoescape false %}
+name,country,date,temperature °C,temperature °F,humidity,perceived temperature,wind speed 
+{% for f in forcasts -%}
+{{- city -}},
+{{- country -}},
+{{- f.date|date('Y-m-d') -}},
+{{- f.temperature -}},
+{{ f.Fahrenheit}},
+{{- f.humidity -}},
+{{- f.perceivedTemperature -}},
+{{- f.wind }}
+{% endfor %}
+{% endautoescape %}
